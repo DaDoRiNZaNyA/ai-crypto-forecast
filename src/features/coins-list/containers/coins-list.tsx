@@ -5,12 +5,9 @@ import { Spinner } from "@/shared/components/ui/spinner";
 import { useInfiniteCoins } from "../hooks/useInfiniteCoins";
 import { CoinItem } from "../ui/coin-item";
 
-const LIMIT = 30;
-const sym = "USD";
-
-export const CoinsList = () => {
+export const CoinsList = ({ sym, limit }: { sym: string; limit: number }) => {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteCoins({ limit: LIMIT, sym });
+    useInfiniteCoins({ limit, sym });
 
   React.useEffect(() => {
     const onScroll = () => {

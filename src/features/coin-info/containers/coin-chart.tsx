@@ -14,11 +14,11 @@ import { Skeleton } from "@/shared/components/ui/skeleton";
 
 const LIMITS = [12, 24, 48, 72];
 
-export const CoinItem = () => {
+export const CoinChart = ({ name }: { name: string }) => {
   const [limit, setLimit] = useState(24);
 
   const { data, isLoading, isError } = useCryptoCompareHistory({
-    asset: "BTC",
+    asset: name,
     currency: "USD",
     limit,
   });
@@ -26,8 +26,10 @@ export const CoinItem = () => {
   return (
     <div className="p-8 min-h-screen">
       <div className="mb-6 flex items-center space-x-4">
-        <Label className="text-lg font-semibold">BTC price history for:</Label>
-        <DropdownMenu>
+        <Label className="text-lg font-semibold">
+          {name} price history for:
+        </Label>
+        <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm">
               {limit} hours
@@ -43,14 +45,14 @@ export const CoinItem = () => {
         </DropdownMenu>
       </div>
 
-      <div className="md:w-[704px] w-full h-[402px] flex items-center justify-center overflow-x-auto border shadow-lg rounded-lg">
+      <div className="md:w-[704px] w-full h-[402px] overflow-x-auto border shadow-lg rounded-lg">
         {isLoading && <Skeleton />}
         {isError && (
           <Label className="text-2xl font-bold text-red-600">
             Error loading data
           </Label>
         )}
-        {data && <D3Chart data={data} />}
+        <div className="min-w-[670px]">{data && <D3Chart data={data} />}</div>
       </div>
     </div>
   );

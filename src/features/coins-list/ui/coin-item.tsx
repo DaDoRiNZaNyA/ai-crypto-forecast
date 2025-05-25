@@ -1,3 +1,4 @@
+import { routes } from "@/kernel/routes";
 import {
   Card,
   CardContent,
@@ -28,7 +29,7 @@ export const CoinItem = ({
   sym: string;
 }) => {
   return (
-    <Link href={"/"}>
+    <Link href={routes.coin(name)}>
       <Card className="shadow-md hover:shadow-lg hover:scale-105 duration-150 ease-in-out h-full">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
