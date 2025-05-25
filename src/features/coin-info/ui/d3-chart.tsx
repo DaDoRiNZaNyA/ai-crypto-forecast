@@ -99,7 +99,7 @@ export const D3Chart = memo(({ data }: { data: PricePoint[] }) => {
     <svg
       width={WIDTH + MARGIN.left + MARGIN.right}
       height={HEIGHT + MARGIN.top + MARGIN.bottom}
-      className="px-4"
+      className="px-4 w-full"
     >
       <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
         <GridLines

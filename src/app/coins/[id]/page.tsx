@@ -1,4 +1,6 @@
 import { getCryptocompareHistory } from "@/entitites/cryptocompare/server";
+import { getCryptocompareCoinInfo } from "@/entitites/cryptocompare/services/get-coin-info";
+import { CoinCard } from "@/features/coin-info/containers/coin-card";
 import { CoinChart } from "@/features/coin-info/containers/coin-chart";
 import {
   dehydrate,
@@ -13,34 +15,41 @@ export default async function Coin({
 }) {
   const { id } = await params;
   const queryClient = new QueryClient();
-  const data = {
-    asset: id,
-    currency: "USD",
-    limit: 24,
-  };
+  const asset = id;
+  const currency = "USD";
+  const limit = 24;
 
   try {
-    await queryClient.fetchQuery({
-      queryKey: [
-        "crypto-compare-history",
-        data.asset,
-        data.currency,
-        data.limit,
-      ],
-      queryFn: async () =>
-        getCryptocompareHistory({
-          asset: data.asset,
-          currency: data.currency,
-          limit: data.limit,
-        }),
-    });
-  } catch (error) {
-    console.error(error);
+    await Promise.all([
+      queryClient.fetchQuery({
+        queryKey: ["crypto-compare-history", asset, currency, limit],
+        queryFn: () =>
+          getCryptocompareHistory({
+            asset,
+            currency,
+            limit,
+          }),
+      }),
+
+      queryClient.fetchQuery({
+        queryKey: ["coin-info", asset, currency],
+        queryFn: () =>
+          getCryptocompareCoinInfo({
+            asset,
+            currency,
+          }),
+      }),
+    ]);
+  } catch (err) {
+    console.error(err);
   }
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <CoinChart name={id} />
+      <div className="flex xl:flex-row flex-col p-8 min-h-screen gap-8">
+        <CoinCard asset={id} />
+        <CoinChart name={id} />
+      </div>
     </HydrationBoundary>
   );
 }

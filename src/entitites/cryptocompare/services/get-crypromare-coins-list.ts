@@ -14,4 +14,3 @@ export const getCryptocompareCoinsList = async ({
 
   return data.data;
 };
-//https://www.cryptocompare.com/media/37746251/btc.png

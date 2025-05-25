@@ -40,7 +40,7 @@ export type CryptoCompareListResponse = {
 
 export type MarketListDataItem = {
   CoinInfo: CoinInfo;
-  RAW: Record<string, RawListData>;
+  RAW: Record<string, RawPriceData>;
   DISPLAY: Record<string, DisplayData>;
 };
 
@@ -70,7 +70,7 @@ export type CoinInfo = {
   DocumentType: string;
 };
 
-export type RawListData = {
+export type RawPriceData = {
   TYPE: string;
   MARKET: string;
   FROMSYMBOL: string;
@@ -167,4 +167,9 @@ export type DisplayData = {
   TOTALTOPTIERVOLUME24H: string;
   TOTALTOPTIERVOLUME24HTO: string;
   IMAGEURL: string;
+};
+
+export type CryptoComparePriceResponse = {
+  RAW: Record<string, Record<string, RawPriceData>>;
+  DISPLAY: Record<string, Record<string, DisplayData>>;
 };

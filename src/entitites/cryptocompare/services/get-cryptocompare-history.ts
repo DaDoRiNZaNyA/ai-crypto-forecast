@@ -20,5 +20,3 @@ export const getCryptocompareHistory = async ({
     price: item.close,
   }));
 };
-//https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD - текущая цена
-//https://min-api.cryptocompare.com/data/top/mktcapfull?limit=1&tsym=USD&page=3
