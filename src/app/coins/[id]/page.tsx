@@ -1,7 +1,8 @@
-import { getCryptocompareHistory } from "@/entitites/cryptocompare/server";
-import { getCryptocompareCoinInfo } from "@/entitites/cryptocompare/services/get-coin-info";
-import { CoinCard } from "@/features/coin-info/containers/coin-card";
-import { CoinChart } from "@/features/coin-info/containers/coin-chart";
+import {
+  getCryptocompareCoinInfo,
+  getCryptocompareHistory,
+} from "@/entitites/cryptocompare/server";
+import { CoinInfo } from "@/features/coin-info";
 import {
   dehydrate,
   HydrationBoundary,
@@ -46,10 +47,7 @@ export default async function Coin({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <div className="flex xl:flex-row flex-col p-8 min-h-screen gap-8">
-        <CoinCard asset={id} />
-        <CoinChart name={id} />
-      </div>
+      <CoinInfo asset={asset} />
     </HydrationBoundary>
   );
 }

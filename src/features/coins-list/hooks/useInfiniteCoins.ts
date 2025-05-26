@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { getCryptocompareCoinsList } from "@/entitites/cryptocompare/services/get-crypromare-coins-list";
 import { CryptoCompareListResponse } from "@/entitites/cryptocompare/types";
+import { getCryptocompareCoinsList } from "@/entitites/cryptocompare/server";
 
 export const useInfiniteCoins = ({
   limit,

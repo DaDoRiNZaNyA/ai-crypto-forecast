@@ -1,4 +1,4 @@
-import { getCryptocompareCoinInfo } from "@/entitites/cryptocompare/services/get-coin-info";
+import { getCryptocompareCoinInfo } from "@/entitites/cryptocompare/server";
 import { useQuery } from "@tanstack/react-query";
 
 export const useCoinInfo = ({

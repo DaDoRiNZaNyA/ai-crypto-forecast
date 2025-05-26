@@ -8,12 +8,12 @@ import {
   DropdownMenuItem,
 } from "@/shared/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/shared/components/ui/theme-toggle";
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
+// const navLinks = [
+//   { href: "/", label: "Home" },
+//   { href: "/about", label: "About" },
+//   { href: "/blog", label: "Blog" },
+//   { href: "/contact", label: "Contact" },
+// ];
 
 export default function Navbar() {
   const loading = false;
@@ -33,7 +33,7 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex space-x-4">
-            {navLinks.map((link) => (
+            {/* {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -41,7 +41,7 @@ export default function Navbar() {
               >
                 {link.label}
               </Link>
-            ))}
+            ))} */}
           </div>
 
           <div className="flex items-center space-x-4">

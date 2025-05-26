@@ -1,4 +1,4 @@
-import { getCryptocompareCoinsList } from "@/entitites/cryptocompare/services/get-crypromare-coins-list";
+import { getCryptocompareCoinsList } from "@/entitites/cryptocompare/server";
 import { CoinsList } from "@/features/coins-list";
 import {
   dehydrate,
