@@ -11,7 +11,6 @@ export const signInAction = async ({
   password: string;
 }) => {
   const user = await signIn(email, password);
-
   if (user.type === "right") {
     redirect(routes.home());
   }

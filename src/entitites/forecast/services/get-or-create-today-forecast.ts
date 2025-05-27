@@ -12,11 +12,8 @@ export const getOrCreateTodayForecast = async ({
   currency: string;
   limit: number;
 }) => {
-  const todayStart = new Date();
-  todayStart.setHours(0, 0, 0, 0);
-
-  const tomorrowStart = new Date(todayStart);
-  tomorrowStart.setDate(todayStart.getDate() + 1);
+  const now = new Date();
+  const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
 
   const existingForecasts = await forecastRepository.getForecasts({
     asset,
@@ -25,8 +22,13 @@ export const getOrCreateTodayForecast = async ({
     order: "desc",
   });
 
-  if (existingForecasts.length > 0) {
-    return existingForecasts[0];
+  const latestForecast = existingForecasts[0];
+
+  if (
+    latestForecast &&
+    new Date(latestForecast.createdAt) > twentyFourHoursAgo
+  ) {
+    return latestForecast;
   }
 
   const forecastText = await aiForecastAssetPrice({ asset, currency, limit });

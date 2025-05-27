@@ -82,7 +82,7 @@ export const RegisterFormFields = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input placeholder="password" {...field} />
+                <Input type="password" placeholder="password" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -95,7 +95,11 @@ export const RegisterFormFields = () => {
             <FormItem>
               <FormLabel>Confirm password</FormLabel>
               <FormControl>
-                <Input placeholder="confirm password" {...field} />
+                <Input
+                  type="password"
+                  placeholder="confirm password"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

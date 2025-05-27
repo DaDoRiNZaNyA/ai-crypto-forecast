@@ -3,7 +3,6 @@ import { userRepository } from "../repositories/user";
 
 export const getCurrentUser = async () => {
   const supabaseUser = await userRepository.getCurrentUser();
-
   if (supabaseUser?.email) {
     const user = await userRepository.findUserByEmail(supabaseUser.email);
 

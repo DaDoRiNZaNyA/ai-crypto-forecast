@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/shared/components/ui/button";
@@ -8,6 +9,8 @@ import {
   DropdownMenuItem,
 } from "@/shared/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/shared/components/ui/theme-toggle";
+import { useRouter } from "next/navigation";
+
 // const navLinks = [
 //   { href: "/", label: "Home" },
 //   { href: "/about", label: "About" },
@@ -15,9 +18,20 @@ import { ThemeToggle } from "@/shared/components/ui/theme-toggle";
 //   { href: "/contact", label: "Contact" },
 // ];
 
-export default function Navbar() {
-  const loading = false;
-  const user = null;
+export default function Navbar({
+  email,
+  logoutAction,
+}: {
+  email: string | null;
+  logoutAction: () => Promise<void>;
+}) {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await logoutAction();
+    router.refresh();
+    router.push("/");
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 w-full bg-white dark:bg-gray-800 shadow-sm">
@@ -47,21 +61,21 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             <ThemeToggle />
 
-            {loading ? null : user ? (
-              <DropdownMenu>
+            {email ? (
+              <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm">
-                    {"user.email"}
+                    {email}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem>
-                    <Link href="/profile">
-                      <a>Profile</a>
-                    </Link>
+                    <Link href="/profile">Profile</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link href="/api/auth/logout">Logout</Link>
+                    <Button variant="ghost" size="sm" onClick={handleLogout}>
+                      Logout
+                    </Button>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

@@ -6,7 +6,6 @@ export const signIn = async (email: string, password: string) => {
 
   if (supabaseUser.user?.email) {
     const user = await userRepository.findUserByEmail(supabaseUser.user.email);
-
     return right(user);
   }
 
