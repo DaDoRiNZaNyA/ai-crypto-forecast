@@ -70,10 +70,16 @@ export default function Navbar({
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem>
-                    <Link href="/profile">Profile</Link>
+                    <Button variant="ghost" asChild className="w-full">
+                      <Link href="/profile">Profile</Link>
+                    </Button>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Button variant="ghost" size="sm" onClick={handleLogout}>
+                    <Button
+                      variant="ghost"
+                      onClick={handleLogout}
+                      className="w-full"
+                    >
                       Logout
                     </Button>
                   </DropdownMenuItem>

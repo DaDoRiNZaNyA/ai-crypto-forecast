@@ -1,4 +1,3 @@
-import { prisma } from "@/shared/lib/sse/db";
 import { createClient } from "@/shared/lib/sse/supabaseServerClient";
 import { User } from "@supabase/supabase-js";
 
@@ -45,26 +44,19 @@ const getCurrentUser = async (): Promise<User | null> => {
   return user;
 };
 
-const createUser = async (user: User) => {
-  return prisma.user.create({
-    data: {
-      id: user.id,
-      email: user.email ?? "",
-      name: user.user_metadata?.name ?? null,
-    },
-  });
-};
-
-const findUserById = async (id: string) => {
-  return prisma.user.findUnique({
-    where: { id },
-  });
-};
-
-const findUserByEmail = async (email: string) => {
-  return prisma.user.findUnique({
-    where: { email },
-  });
+const updateUser = async ({
+  email,
+  password,
+}: {
+  email: string;
+  password?: string;
+}) => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.updateUser({ email, password });
+  return {
+    user: data.user,
+    error: error?.message ?? null,
+  };
 };
 
 export const userRepository = {
@@ -72,7 +64,5 @@ export const userRepository = {
   signIn,
   logout,
   getCurrentUser,
-  createUser,
-  findUserById,
-  findUserByEmail,
+  updateUser,
 };

@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "Forecast" (
+CREATE TABLE "public"."Forecast" (
     "id" SERIAL NOT NULL,
     "asset" TEXT NOT NULL,
     "text" TEXT NOT NULL,
@@ -9,4 +9,4 @@ CREATE TABLE "Forecast" (
 );
 
 -- CreateIndex
-CREATE INDEX "Forecast_asset_idx" ON "Forecast"("asset");
+CREATE INDEX "Forecast_asset_idx" ON "public"."Forecast"("asset");
