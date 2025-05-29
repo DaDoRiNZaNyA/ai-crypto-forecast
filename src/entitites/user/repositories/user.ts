@@ -1,3 +1,4 @@
+import { routes } from "@/kernel/routes";
 import { createClient } from "@/shared/lib/sse/supabaseServerClient";
 import { User } from "@supabase/supabase-js";
 
@@ -59,10 +60,30 @@ const updateUser = async ({
   };
 };
 
+const resetPassword = async (email: string) => {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: process.env.NEXT_PUBLIC_FRONTEND_URL + routes.callback(),
+  });
+
+  return {
+    data,
+    error: error?.message ?? null,
+  };
+};
+
+const exchangeCodeForSession = async (code: string) => {
+  const supabase = await createClient();
+  return await supabase.auth.exchangeCodeForSession(code);
+};
+
 export const userRepository = {
   signUp,
   signIn,
   logout,
   getCurrentUser,
   updateUser,
+  resetPassword,
+  exchangeCodeForSession,
 };

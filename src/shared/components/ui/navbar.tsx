@@ -10,6 +10,7 @@ import {
 } from "@/shared/components/ui/dropdown-menu";
 import { ThemeToggle } from "@/shared/components/ui/theme-toggle";
 import { useRouter } from "next/navigation";
+import { routes } from "@/kernel/routes";
 
 // const navLinks = [
 //   { href: "/", label: "Home" },
@@ -30,7 +31,7 @@ export default function Navbar({
   const handleLogout = async () => {
     await logoutAction();
     router.refresh();
-    router.push("/");
+    router.push(routes.home());
   };
 
   return (
@@ -39,7 +40,7 @@ export default function Navbar({
         <div className="flex justify-between h-16 items-center">
           <div className="flex-shrink-0">
             <Link
-              href="/"
+              href={routes.home()}
               className="text-xl font-semibold text-gray-900 dark:text-white"
             >
               MyApp
@@ -71,7 +72,7 @@ export default function Navbar({
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem>
                     <Button variant="ghost" asChild className="w-full">
-                      <Link href="/profile">Profile</Link>
+                      <Link href={routes.profile()}>Profile</Link>
                     </Button>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
@@ -86,7 +87,7 @@ export default function Navbar({
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Link href="/sign-in">Login</Link>
+              <Link href={routes.signIn()}>Login</Link>
             )}
           </div>
         </div>

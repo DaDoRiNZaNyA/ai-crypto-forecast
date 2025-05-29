@@ -11,9 +11,17 @@ export const LoginForm = () => {
       title="Login"
       description=""
       link={
-        <Link href={routes.signUp()} className="underline text-blue-700">
-          Sign up
-        </Link>
+        <div className="flex flex-row w-full justify-between">
+          <Link href={routes.signUp()} className="underline text-blue-700">
+            Sign up
+          </Link>
+          <Link
+            href={routes.forgotPassword()}
+            className="underline text-blue-700"
+          >
+            Forgot password
+          </Link>
+        </div>
       }
       form={<LoginFormFields />}
     />
