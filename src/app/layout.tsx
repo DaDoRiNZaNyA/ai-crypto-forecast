@@ -8,6 +8,8 @@ import BProgressProvider from "@/shared/components/providers/bprogress-provider"
 import QueryClientProvider from "@/shared/components/providers/query-client-provider";
 import { headers } from "next/headers";
 import { logout } from "@/entitites/user/server";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,7 +62,11 @@ export default async function RootLayout({
                 richColors
               />
               <Navbar email={email} logoutAction={logoutAction} />
-              <main className="pt-16">{children}</main>
+              <main className="pt-16">
+                {children}
+                <Analytics />
+                <SpeedInsights />
+              </main>
             </BProgressProvider>
           </ThemeProvider>
         </QueryClientProvider>
