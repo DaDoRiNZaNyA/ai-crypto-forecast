@@ -28,11 +28,13 @@ export const aiForecastAssetPrice = async ({
     )
     .join("\n");
 
+  const generalInfoText = JSON.stringify(info.DISPLAY[asset]?.USD, null, 2);
+
   const prompt = `
     You are a financial analyst. Analyze the cryptocurrency ${asset.toUpperCase()} based on the following data.
     
     General Information:
-    ${info.DISPLAY[asset]?.USD}
+    ${generalInfoText}
     
     Price History (last ${limit} hours):
     ${historyText}
