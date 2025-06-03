@@ -43,7 +43,7 @@ export default function Navbar({
               href={routes.home()}
               className="text-xl font-semibold text-gray-900 dark:text-white"
             >
-              MyApp
+              AiCryptoForecast
             </Link>
           </div>
 
