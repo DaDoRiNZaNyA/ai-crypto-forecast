@@ -30,7 +30,7 @@ export const AiChat = ({
     </div>
   ) : (
     <Chat
-      className="max-h-[calc(100dvh-(--spacing(16)))] h-full"
+      className="max-h-[calc(100dvh-(--spacing(16)))] h-full overflow-y-auto"
       messages={messages}
       input={input}
       handleInputChange={handleInputChange}

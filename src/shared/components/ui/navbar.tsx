@@ -12,13 +12,6 @@ import { ThemeToggle } from "@/shared/components/ui/theme-toggle";
 import { useRouter } from "next/navigation";
 import { routes } from "@/kernel/routes";
 
-// const navLinks = [
-//   { href: "/", label: "Home" },
-//   { href: "/about", label: "About" },
-//   { href: "/blog", label: "Blog" },
-//   { href: "/contact", label: "Contact" },
-// ];
-
 export default function Navbar({
   email,
   logoutAction,
@@ -41,31 +34,23 @@ export default function Navbar({
           <div className="flex-shrink-0">
             <Link
               href={routes.home()}
-              className="text-xl font-semibold text-gray-900 dark:text-white"
+              className="md:text-xl text-normal font-semibold text-gray-900 dark:text-white"
             >
               AiCryptoForecast
             </Link>
           </div>
 
-          <div className="hidden md:flex space-x-4">
-            {/* {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                {link.label}
-              </Link>
-            ))} */}
-          </div>
-
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center ml-2 md:space-x-4 space-x-2">
             <ThemeToggle />
 
             {email ? (
               <DropdownMenu modal={false}>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="overflow-hidden text-ellipsis whitespace-nowrap justify-start max-w-[150px] md:max-w-full"
+                  >
                     {email}
                   </Button>
                 </DropdownMenuTrigger>
