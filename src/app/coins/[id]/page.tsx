@@ -9,11 +9,34 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-export default async function Coin({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+type Props = { params: Promise<{ id: string }> };
+
+export async function generateMetadata({ params }: Props) {
+  const { id } = await params;
+  const asset = id;
+  return {
+    title: `${asset} Forecast | AI Crypto Analysis`,
+    description: `View in-depth forecast and analysis for ${asset} powered by artificial intelligence. See if it's worth investing.`,
+    keywords: [
+      asset,
+      "crypto forecast",
+      "AI crypto analysis",
+      "should I buy",
+      "crypto prediction",
+    ],
+    openGraph: {
+      title: "AI Crypto Forecast | Top Coins",
+      description:
+        "Discover trending cryptocurrencies with forecasts powered by AI. Stay informed and make smart decisions.",
+      url: "https://ai-crypto-forecast.vercel.app",
+      siteName: "CryptoForecastAI",
+      locale: "en_US",
+      type: "website",
+    },
+  };
+}
+
+export default async function Coin({ params }: Props) {
   const { id } = await params;
   const queryClient = new QueryClient();
   const asset = id;
